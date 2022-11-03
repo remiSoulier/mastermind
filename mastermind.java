@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Main {
+public class mastermind {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("saisir le nombre de couleurs possibles");

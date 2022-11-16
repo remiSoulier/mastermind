@@ -156,7 +156,19 @@ public class MasterMindBase {
 	résultat : vrai ssi codMot est correct, c'est-à-dire de longueur lgCode et ne contenant que des éléments de tabCouleurs
     */
     public static boolean codeCorrect(String codMot, int lgCode, char[] tabCouleurs){
-  
+        boolean correct=true;
+        if (codMot.length()!=lgCode){
+            correct=false;
+            System.out.println("la longueur de codMot et de lgCode n'est pas égale");
+        }
+        for (int i=0; i<(tabCouleurs.length);i++){
+            if (tabCouleurs[i]!=codMot.charAt(i)){   // checker chaque celule du tableau pour chaque c du string
+                correct=false;
+                System.out.println("le code n'est pas correct car le "+i+"caractere n'est pas egal à celui du tableau des couleurs");
+            }
+        }
+        return correct;
+
     }
    
     //____________________________________________________________

@@ -315,10 +315,27 @@ public class mastermind { // à renommer en main pour online compiler
 	résultat : un tableau de longueur nbCouleurs contenant à chaque indice i le nombre d'occurrences de i dans cod
 	Par exemple, si cod = (1,0,2,0) et nbCouleurs = 6 la fonction retourne (2,1,1,0,0,0)
     */
-    public static int/*[]*/ tabFrequence(int[] cod, int nbCouleurs){ //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-        return 0;
-    }
+    public static int[] tabFrequence(int[] cod, int nbCouleurs)
+    {
+        int[] tabFrequence;
+        tabFrequence= new int[nbCouleurs];
 
+        int compt=0;
+
+        for (int i=0; i<tabFrequence.length;i++)
+        {
+            for (int j=0; j<cod.length;j++)
+            {
+                if (cod[j]==j)
+                {
+                    compt++;
+                }
+            }
+            tabFrequence[i]=compt;
+        }
+        System.out.println(tabFrequence);
+        return tabFrequence;
+    }
     //____________________________________________________________
     
     /** pré-requis : les éléments de cod1 et cod2 sont des entiers de 0 à nbCouleurs-1

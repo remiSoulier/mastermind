@@ -401,9 +401,46 @@ public class mastermind { // à renommer en main pour online compiler
               s'il n'a toujours pas trouvé au bout du nombre maximum d'essais  
             - sinon le nombre de codes proposés par le joueur humain          
     */
-    //public static int mancheHumain(int lgCode, char[] tabCouleurs, int numManche, int nbEssaisMax){
-  
-    //}
+    public static int mancheHumain(int lgCode, char[] tabCouleurs, int numManche, int nbEssaisMax){
+        
+        int score = 0;
+        int numEssais = 0;
+        int[]codePropHumInt;
+        String codePropHumMot;
+
+        int[] codeSecret = new int [lgCode];
+        codeSecret=codeAleat(lgCode, tabCouleurs.length);
+
+        System.out.println("Manche n° "+ numManche);
+        for (int i=0; i<=nbEssaisMax;i++)
+        {
+            numEssais=i+1;
+
+            if (i==nbEssaisMax) // Fin Manche : humain n'a pas trouvé code après nombre d'essais
+            { // Cela est fait une fois nbEssaisMax atteint, on ne redemande donc pas une saisie 
+                System.out.println("Dommage, manche terminé !");
+                score=nbEssaisMax;
+                return score;
+            }
+
+            codePropHumInt = propositionCodeHumain(numEssais, lgCode, tabCouleurs); // Saisie humain du code retournée en entier 
+            codePropHumMot = entiersVersMot(codePropHumInt, tabCouleurs); // conversion du code proposé d'entier en mots (entier en ch caract)
+
+            while (codeCorrect(codePropHumMot, lgCode, tabCouleurs) == false) // saisie incorrect, reessaie de la saisie
+            {   
+                codePropHumInt = propositionCodeHumain(i+1, lgCode, tabCouleurs); // Saisie humain du code retournée en entier 
+                codePropHumMot = entiersVersMot(codePropHumInt, tabCouleurs); // conversion du code proposé d'entier en mots (entier en ch caract) 
+            }
+
+            if (codePropHumInt == codeSecret)  // Fin Manche : code trouvé
+            {
+                System.out.println("Bravo, Code trouvé !");
+                score += numEssais;
+                return score;
+            }
+        }
+        return score;
+    }
 
     //____________________________________________________________
 

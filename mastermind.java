@@ -241,9 +241,16 @@ public class mastermind { // à renommer en main pour online compiler
 	résultat : le code codMot sous forme de tableau d'entiers en remplaçant chaque couleur par son indice dans tabCouleurs
     */
 
-    public static int/*[]*/ motVersEntiers(String codMot, char[] tabCouleurs) //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-	{		// A COMPLETER
-		return 0;
+    public static int[] motVersEntiers(String codMot, char[] tabCouleurs) {		
+        int[] t = new int[codMot.length()];
+        for(int i=0;i<(codMot.length());i++){
+            for (int j=0;j<(tabCouleurs.length);j++){
+                if (codMot.charAt(i)==tabCouleurs[j]){
+                    t[i]=j;
+                }
+            }
+        }
+	return t;
     }
     
 	//____________________________________________________________

@@ -315,7 +315,7 @@ public class mastermind { // à renommer en main pour online compiler
 	résultat : un tableau de longueur nbCouleurs contenant à chaque indice i le nombre d'occurrences de i dans cod
 	Par exemple, si cod = (1,0,2,0) et nbCouleurs = 6 la fonction retourne (2,1,1,0,0,0)
     */
-    public static int[] tabFrequence(int[] cod, int nbCouleurs)
+  public static int[] tabFrequence(int[] cod, int nbCouleurs)
     {
         int[] tabFrequence;
         tabFrequence= new int[nbCouleurs];

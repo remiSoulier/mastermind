@@ -331,20 +331,23 @@ public class mastermind { // à renommer en main pour online compiler
 
         for (int i=0; i<tabFrequence.length;i++)
         {
+            compt=0;
             for (int j=0; j<cod.length;j++)
             {
-                for (int k=0; k<cod.length;k++)
+                if (cod[j]== i)
                 {
-                    if (cod[j]==cod[k])
-                    {
-                        compt++;
-                    }
+                    compt++;
+                
                 }
-
             }
             tabFrequence[i]=compt;
         }
-        System.out.println(tabFrequence);
+        System.out.print("(");
+        for (int i=0;i<tabFrequence.length;i++)
+        {
+            System.out.print(tabFrequence[i]+",");
+        }
+        System.out.print(")");
         return tabFrequence;
     }
     //____________________________________________________________

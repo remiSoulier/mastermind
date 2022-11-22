@@ -613,6 +613,9 @@ public class mastermind { // à renommer en main pour online compiler
 
     public static void masterMind ()
     {
+        Scanner scanner;
+        scanner = new Scanner (System.in);
+
         sautLigne();
         System.out.println("Bienvenue dans le Master Mind"); sautLigne();
         
@@ -634,6 +637,21 @@ public class mastermind { // à renommer en main pour online compiler
         System.out.println("Initialisation terminée");
         sautLigne();
 
-        int[]codePropHum=propositionCodeHumain(1, lgCode, tabCouleurs);
-	}  
+        int[] cod1 = {1,0,2,0}, cod2 = {0,1,0,0};
+        nbCommuns(cod1, cod2,3); 
+
+        System.out.println("Type de Partie :");
+        System.out.println("Décodeur Humain     [1]");
+        System.out.println("Décodeur Humain     [2]");
+
+        int input = scanner.nextInt();
+
+        if (input == 1) // Manche Humain 
+        {
+            for (int i=0; i<nbManches;i++)
+            {
+                mancheHumain(lgCode, tabCouleurs, 1, nbEssaisMax);
+            }
+        }
+     }  
 }

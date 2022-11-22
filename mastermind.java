@@ -350,6 +350,7 @@ public class mastermind { // à renommer en main pour online compiler
         System.out.print(")");
         return tabFrequence;
     }
+
     //____________________________________________________________
     
     /** pré-requis : les éléments de cod1 et cod2 sont des entiers de 0 à nbCouleurs-1
@@ -357,7 +358,20 @@ public class mastermind { // à renommer en main pour online compiler
 	Par exemple, si cod1 = (1,0,2,0) et cod2 = (0,1,0,0) la fonction retourne 3 (2 "0" et 1 "1") //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     */
     public static int nbCommuns(int[] cod1,int[] cod2, int nbCouleurs){
-        return 0;
+        int nbCommuns = 0;    
+        
+        for (int i=0;i<nbCouleurs;i++)
+        {
+            for (int j=0;j<nbCouleurs;j++)
+            {
+                if(cod1[i]==cod2[j])
+                {
+                    nbCommuns++;
+                }
+            }
+        }
+        System.out.println(nbCommuns);
+        return nbCommuns;
     }
 
     //____________________________________________________________

@@ -647,11 +647,6 @@ public class mastermind { // à renommer en main pour online compiler
 	   Toute donnée incorrecte doit être re-saisie jusqu'à ce qu'elle soit correcte.*/
 //____________________________________________________________
 	   
-    public static void main(String[] args) 
-    { 
-        masterMind();
-    }
-
     public static void masterMind ()
     {
         Scanner scanner;
@@ -678,21 +673,27 @@ public class mastermind { // à renommer en main pour online compiler
         System.out.println("Initialisation terminée");
         sautLigne();
 
-        int[] cod1 = {1,0,2,0}, cod2 = {0,1,0,0};
-        nbCommuns(cod1, cod2,3); 
+        ////////////////////// SELECTION TYPE DE PARTIE  /////////////////////////////////////
 
         System.out.println("Type de Partie :");
         System.out.println("Décodeur Humain VS Codeur IA     [1]");
         System.out.println("Codeur Humain VS Decodeur IA     [2] (NON DISPO)");
-
         int input = scanner.nextInt();
 
         if (input == 1) // Manche Humain 
         {
             for (int i=0; i<nbManches;i++)
             {
-                mancheHumain(lgCode, tabCouleurs, 1, nbEssaisMax);
+                mancheHumain(lgCode, tabCouleurs, i, nbEssaisMax);
             }
         }
-    }  
+        else if (input == 2) // Manche IA
+        {
+            for (int i=0; i<nbManches;i++)
+            {
+                mancheOrdinateur(lgCode, tabCouleurs, nbManches, nbEssaisMax);
+            }
+        }
+        ///////////////////////////////////////////////////////////////////////////////////////
+    }   
 }

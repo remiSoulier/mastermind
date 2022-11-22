@@ -682,8 +682,8 @@ public class mastermind { // à renommer en main pour online compiler
         nbCommuns(cod1, cod2,3); 
 
         System.out.println("Type de Partie :");
-        System.out.println("Décodeur Humain     [1]");
-        System.out.println("Décodeur Humain     [2]");
+        System.out.println("Décodeur Humain VS Codeur IA     [1]");
+        System.out.println("Codeur Humain VS Decodeur IA     [2] (NON DISPO)");
 
         int input = scanner.nextInt();
 
@@ -694,5 +694,5 @@ public class mastermind { // à renommer en main pour online compiler
                 mancheHumain(lgCode, tabCouleurs, 1, nbEssaisMax);
             }
         }
-     }  
+    }  
 }

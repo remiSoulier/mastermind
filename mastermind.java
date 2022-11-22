@@ -441,6 +441,7 @@ public class mastermind { // à renommer en main pour online compiler
             else
             {
                 System.out.println("Code Secret non trouvé !");
+                sautLigne();
             }
         }
         return score;

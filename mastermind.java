@@ -424,19 +424,23 @@ public class mastermind { // à renommer en main pour online compiler
             }
 
             codePropHumInt = propositionCodeHumain(numEssais, lgCode, tabCouleurs); // Saisie humain du code retournée en entier 
-            codePropHumMot = entiersVersMot(codePropHumInt, tabCouleurs); // conversion du code proposé d'entier en mots (entier en ch caract)
+            /*codePropHumMot = entiersVersMot(codePropHumInt, tabCouleurs); // conversion du code proposé d'entier en mots (entier en ch caract)
 
             while (codeCorrect(codePropHumMot, lgCode, tabCouleurs) == false) // saisie incorrect, reessaie de la saisie
             {   
                 codePropHumInt = propositionCodeHumain(i+1, lgCode, tabCouleurs); // Saisie humain du code retournée en entier 
                 codePropHumMot = entiersVersMot(codePropHumInt, tabCouleurs); // conversion du code proposé d'entier en mots (entier en ch caract) 
-            }
+            }*/
 
             if (codePropHumInt == codeSecret)  // Fin Manche : code trouvé
             {
                 System.out.println("Bravo, Code trouvé !");
                 score += numEssais;
                 return score;
+            }
+            else
+            {
+                System.out.println("Code Secret non trouvé !");
             }
         }
         return score;

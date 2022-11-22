@@ -675,25 +675,34 @@ public class mastermind { // à renommer en main pour online compiler
 
         ////////////////////// SELECTION TYPE DE PARTIE  /////////////////////////////////////
 
-        System.out.println("Type de Partie :");
-        System.out.println("Décodeur Humain VS Codeur IA     [1]");
-        System.out.println("Codeur Humain VS Decodeur IA     [2] (NON DISPO)");
-        int input = scanner.nextInt();
-
-        if (input == 1) // Manche Humain 
+        while(true)
         {
-            for (int i=0; i<nbManches;i++)
+            sautLigne();
+            System.out.println("Type de Partie :");
+            System.out.println("Décodeur Humain VS Codeur IA     [1]");
+            System.out.println("Codeur Humain VS Decodeur IA     [2] (NON DISPO)");
+            int input = scanner.nextInt();
+    
+            if (input == 1) // Manche Humain 
             {
-                mancheHumain(lgCode, tabCouleurs, i, nbEssaisMax);
+                for (int i=1; i<nbManches+1;i++)
+                {
+                    mancheHumain(lgCode, tabCouleurs, i, nbEssaisMax);
+                    sautLigne();
+                }
+    
             }
-        }
-        else if (input == 2) // Manche IA
-        {
-            for (int i=0; i<nbManches;i++)
+            else if (input == 2) // Manche IA
             {
-                mancheOrdinateur(lgCode, tabCouleurs, nbManches, nbEssaisMax);
+                for (int i=1; i<nbManches+1;i++)
+                {
+                    mancheOrdinateur(lgCode, tabCouleurs, nbManches, nbEssaisMax);
+                    sautLigne();
+                }
             }
+            System.out.println("Fin de Partie !");
+            sautLigne();
         }
         ///////////////////////////////////////////////////////////////////////////////////////
-    }   
+    }  
 }

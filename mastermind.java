@@ -387,8 +387,12 @@ public class Main { // à renommer en main pour online compiler
 	Par exemple, si cod1 = (1,0,2,0) et cod2 = (0,1,0,0) la fonction retourne (1,2) : 1 bien placé (le "0" à l'indice 3)  //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 	et 2 mal placés (1 "0" et 1 "1") 
     */
-    public static int/*[]*/ nbBienMalPlaces(int[] cod1,int[] cod2, int nbCouleurs){
-        return 0;
+    public static int[] nbBienMalPlaces(int[] cod1,int[] cod2, int nbCouleurs){
+        int[] t= new int[2];
+        t[0]=nbBienPlaces(cod1,cod2);
+        t[1]=nbCommuns(cod1,cod2,nbCouleurs)-nbBienPlaces(cod1,cod2);
+
+        return t;
     }
      //____________________________________________________________
 

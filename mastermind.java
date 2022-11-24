@@ -432,13 +432,6 @@ public class Main { // à renommer en main pour online compiler
         {
             numEssais=i+1;
 
-            if (i==nbEssaisMax-1) // Fin Manche : humain n'a pas trouvé code après nombre d'essais
-            { // Cela est fait une fois nbEssaisMax atteint, on ne redemande donc pas une saisie 
-                System.out.println("Dommage, manche terminé !");
-                score=nbEssaisMax;
-                return score;
-            }
-
             codePropHumInt = propositionCodeHumain(numEssais, lgCode, tabCouleurs); // Saisie humain du code retournée en entier 
             codePropHumMot = entiersVersMot(codePropHumInt, tabCouleurs); // conversion du code proposé d'entier en mots (entier en ch caract) 
             
@@ -461,6 +454,13 @@ public class Main { // à renommer en main pour online compiler
                 
                 nbCommuns(codePropHumInt, codeSecret, tabCouleurs.length);
                 nbBienPlaces(codeSecret, codePropHumInt);
+            }
+		
+	    if (i==nbEssaisMax-1) // Fin Manche : humain n'a pas trouvé code après nombre d'essais
+            { // Cela est fait une fois nbEssaisMax atteint, on ne redemande donc pas une saisie 
+                System.out.println("Dommage, manche terminé !");
+                score=nbEssaisMax;
+                return score;
             }
         }
         System.out.println("Ton Score: "+score);

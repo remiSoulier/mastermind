@@ -421,8 +421,7 @@ public class Main { // à renommer en main pour online compiler
         int[] codeSecret;
         codeSecret = new int [lgCode];
         codeSecret=codeAleat(lgCode, tabCouleurs.length);
-        
-        entiersVersMot(codeSecret,tabCouleurs);
+
 
         sautLigne();
         System.out.println("Manche n° "+ numManche);
@@ -434,11 +433,11 @@ public class Main { // à renommer en main pour online compiler
             codePropHumInt = propositionCodeHumain(numEssais, lgCode, tabCouleurs); // Saisie humain du code retournée en entier
             codePropHumMot = entiersVersMot(codePropHumInt, tabCouleurs); // conversion du code proposé d'entier en mots (entier en ch caract)
 
-            /*while (codeCorrect(codePropHumMot, lgCode, tabCouleurs) == false) // saisie incorrect, reessaie de la saisie
+            while (codeCorrect(codePropHumMot, lgCode, tabCouleurs) == false) // saisie incorrect, reessaie de la saisie
             {
                 codePropHumInt = propositionCodeHumain(i+1, lgCode, tabCouleurs); // Saisie humain du code retournée en entier
                 codePropHumMot = entiersVersMot(codePropHumInt, tabCouleurs); // conversion du code proposé d'entier en mots (entier en ch caract)
-            }*/
+            }
 
             if (nbBienPlaces(codeSecret, codePropHumInt) == codeSecret.length)  // Fin Manche : code trouvé
             {
@@ -503,7 +502,6 @@ public class Main { // à renommer en main pour online compiler
      action : demande au joueur humain de saisir les nombres de bien et mal placés,
      avec re-saisie éventuelle jusqu'à ce qu'elle soit correcte
      résultat : les réponses du joueur humain dans un tableau à 2 entiers
-
      public static int[] reponseHumain(int lgCode){ //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
      return
      }
@@ -685,25 +683,25 @@ public class Main { // à renommer en main pour online compiler
         scanner = new Scanner (System.in);
 
         sautLigne();
-        System.out.println("Bienvenue dans le Master Mind");
+        System.out.println("-Bienvenue dans le Master Mind-");
         sautLigne();
 
-        System.out.println("Nombre de pions du code secret");
+        System.out.println("-Nombre de pions du code secret-");
         int lgCode = saisirEntierPositif();
         sautLigne();
 
         char[] tabCouleurs = saisieCouleur();
         sautLigne();
 
-        System.out.println("Nombre de manches");
+        System.out.println("-Nombre de manches-");
         int nbManches = saisirEntierPairPositif();
         sautLigne();
 
-        System.out.println("Nombre d'essais");
+        System.out.println("-Nombre d'essais-");
         int nbEssaisMax = saisirEntierPositif();
         sautLigne();
 
-        System.out.println("Initialisation terminée");
+        System.out.println("-Initialisation terminée-");
         sautLigne();
 
         ////////////////////// SELECTION TYPE DE PARTIE  /////////////////////////////////////
@@ -711,7 +709,7 @@ public class Main { // à renommer en main pour online compiler
         while(true)
         {
             sautLigne();
-            System.out.println("Type de Partie :");
+            System.out.println("-Type de Partie-");
             System.out.println("Décodeur Humain Contre Codeur IA     [1]");
             System.out.println("Codeur Humain Contre Decodeur IA     [2] (//////)");
 
@@ -721,7 +719,7 @@ public class Main { // à renommer en main pour online compiler
             if (input == 1) // Manche Humain
             {
                 sautLigne();
-                System.out.println("Mode choisie : Décodeur Humain Contre Codeur IA");
+                System.out.println("-Mode choisie : Décodeur Humain Contre Codeur IA-");
                 System.out.println("A toi de jouer !"); sautLigne();
                 for (int i=1; i<nbManches+1;i++)
                 {

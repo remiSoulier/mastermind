@@ -281,13 +281,17 @@ public class Main { // à renommer en main pour online compiler
 
         int[] propCodeHumain;
         propCodeHumain = new int [lgCode];
-        int indiceAff=1; // affichage de l'indice sans i=0
+        
+        // VAR D'AFFICHAGE
+        int indiceAff = 1; // affichage de l'indice sans i=0
+        int nbEssaisAff = lgCode+1;
+        // ///
 
         String propStr ="";
 
         for (int i=0; i<lgCode;i++)
         {
-            System.out.println("Saisissez proposition n°"+nbCoups+"/"+lgCode+1+" de code");
+            System.out.println("Saisissez proposition n°"+nbCoups+"/"+nbEssaisAff+" de code");
             System.out.println("Couleur n°"+ indiceAff);
             saisie = scanner.next().charAt(0);
 

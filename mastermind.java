@@ -619,7 +619,6 @@ public class Main { // à renommer en main pour online compiler
             System.out.println("Saisissez un entier positif");
             saisie = scanner.nextInt();
         }
-        ;
         return saisie;
     }
 

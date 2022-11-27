@@ -287,7 +287,7 @@ public class Main { // à renommer en main pour online compiler
 
         for (int i=0; i<lgCode;i++)
         {
-            System.out.println("Saisissez proposition n°"+nbCoups+" de code");
+            System.out.println("Saisissez proposition n°"+nbCoups+"/"+lgCode+1" de code");
             System.out.println("Couleur n°"+ indiceAff);
             saisie = scanner.next().charAt(0);
 
@@ -746,7 +746,7 @@ public class Main { // à renommer en main pour online compiler
             
             clearConsole(); sautLigne();
             
-            System.out.println("-Mode : Codeur Humain Contre Decodeur IA-");
+            System.out.println("-Manche : Codeur Humain Contre Decodeur IA-");
             System.out.println("Au tour de l'adversaire de decoder !"); sautLigne();
         
             mancheOrdinateur(lgCode, tabCouleurs, i, nbEssaisMax);

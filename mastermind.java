@@ -26,14 +26,13 @@ public class Main { // à renommer en main pour online compiler
     public static void DoubleSautLigne()
     {sautLigne();sautLigne();}
 
-    public static void affIntTab (int[]tab)
+    public static void affTabInt (int[]tab)
     {
         for (int i=0; i<tab.length;i++)
         {
             System.out.print(tab[i]+" ");
         }
     }
-
 
     // ////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -80,7 +79,6 @@ public class Main { // à renommer en main pour online compiler
         {
             listElem+="("+t[i]+"),";
         }
-        System.out.print(listElem);
         return listElem;
     }
     //____________________________________________________________
@@ -240,7 +238,7 @@ public class Main { // à renommer en main pour online compiler
             if (tabCouleurs[i]!=codMot.charAt(i))
             {   // checker chaque celule du tableau pour chaque c du string
                 correct=false;
-                System.out.println("le code n'est pas correct car le "+i+"caractere n'est pas egal à celui du tableau des couleurs");
+                System.out.println("le code n'est pas correct car le "+i+" caractere n'est pas egal à celui du tableau des couleurs");
             }
         }
         return correct;
@@ -284,14 +282,12 @@ public class Main { // à renommer en main pour online compiler
         
         // VAR D'AFFICHAGE
         int indiceAff = 1; // affichage de l'indice sans i=0
-        int nbEssaisAff = lgCode+1;
-        // ///
 
         String propStr ="";
 
         for (int i=0; i<lgCode;i++)
         {
-            System.out.println("Saisissez proposition n°"+nbCoups+"/"+nbEssaisAff+" de code");
+            System.out.println("Saisissez proposition n°"+nbCoups+" de code");
             System.out.println("Couleur n°"+ indiceAff);
             saisie = scanner.next().charAt(0);
 
@@ -357,13 +353,9 @@ public class Main { // à renommer en main pour online compiler
                 }
             }
             tabFrequence[i]=compt;
+            System.out.print(tabFrequence[i]);
         }
-        System.out.print("(");
-        for (int i=0;i<tabFrequence.length;i++)
-        {
-            System.out.print(tabFrequence[i]+",");
-        }
-        System.out.print(")");
+        
         return tabFrequence;
     }
 
@@ -468,7 +460,9 @@ public class Main { // à renommer en main pour online compiler
         
         System.out.println("Le code était: "+ entiersVersMot(codeSecret,tabCouleurs) );
         sautLigne();
-        System.out.println("Ton Score: "+score);
+        System.out.println("Ton Score: "+score); pause(9500);
+        clearConsole();
+        
         return score;
     }
 
@@ -614,7 +608,6 @@ public class Main { // à renommer en main pour online compiler
             System.out.println("Saisissez un entier positif");
             saisie = scanner.nextInt();
         }
-        ;
         return saisie;
     }
 
@@ -671,11 +664,8 @@ public class Main { // à renommer en main pour online compiler
             }
             tabCoul[i]= coul.charAt(0);
         }
-        System.out.print("Couleurs choisis: ");
-        for (int i =0 ; i<(tabCoul.length);i++) // Affichage tableau couleurs
-        {
-            System.out.print(tabCoul[i]+" ");
-        }
+        System.out.print("Couleurs choisis: " + listElem(tabCoul));
+
         return tabCoul;
     }
     //____________________________________________________________
@@ -743,7 +733,7 @@ public class Main { // à renommer en main pour online compiler
         
         sautLigne();
         System.out.println("Fin de Partie !"); 
-        pause(5000);
+        pause(6000);
         clearConsole(); sautLigne();
     }
 }

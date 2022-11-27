@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Main { // à renommer en main pour online compiler
+public class mastermind { // à renommer en main pour online compiler
 
     // Fonctions Pratiques à réutiliser ///////////////////////////////////////////////////////////
 
@@ -21,7 +21,7 @@ public class Main { // à renommer en main pour online compiler
     }
 
     public static void sautLigne()
-    {System.out.println("");}
+    {System.out.println();}
 
     public static void DoubleSautLigne()
     {sautLigne();sautLigne();}
@@ -492,20 +492,31 @@ public class Main { // à renommer en main pour online compiler
      les nombres de bien et mal placés resp.
      résultat : vrai ssi rep est correct, c'est-à-dire rep[0] et rep[1] sont >= 0 et leur somme est <= lgCode
      */
-    //public static boolean repCorrecte(int[] rep, int lgCode){ //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-    //}
+    public static boolean repCorrecte(int[] rep, int lgCode){
+        boolean repCorrect=false;
+        if ((rep[0]>=0)&&(rep[1]>=0)&&(rep[0]+rep[1]==lgCode)){
+            repCorrect=true;
+        }
+        return repCorrect;
+    }
 
     //___________________________________________________________________
 
     /** pré-requis : aucun
      action : demande au joueur humain de saisir les nombres de bien et mal placés,
      avec re-saisie éventuelle jusqu'à ce qu'elle soit correcte
-     résultat : les réponses du joueur humain dans un tableau à 2 entiers
-     public static int[] reponseHumain(int lgCode){ //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-     return
+     résultat : les réponses du joueur humain dans un tableau à 2 entiers*/
+     public static int[] reponseHumain(int lgCode){
+         int[] t = new int[lgCode];
+         while (repCorrecte(t,lgCode)==false) {
+             for (int i = 0; i < t.length; i++) {
+                 t[i] = saisirEntierPositif();
+             }
+         }
+
+         return t;
      }
-     */
+
     //___________________________________________________________________
 
     /**CHANGE : action si le code suivant n'existe pas

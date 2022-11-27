@@ -287,7 +287,7 @@ public class Main { // à renommer en main pour online compiler
 
         for (int i=0; i<lgCode;i++)
         {
-            System.out.println("Saisissez proposition n°"+nbCoups+"/"+lgCode+1" de code");
+            System.out.println("Saisissez proposition n°"+nbCoups+"/"+lgCode+1+" de code");
             System.out.println("Couleur n°"+ indiceAff);
             saisie = scanner.next().charAt(0);
 

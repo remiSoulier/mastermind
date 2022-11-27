@@ -299,6 +299,7 @@ public class Main { // à renommer en main pour online compiler
                 System.out.println("Veillez resaisir couleur n°"+ indiceAff);
                 saisie = scanner.next().charAt(0);
             }
+            
             propCodeHumain[i] = saisie;
             propStr += saisie; // Conversion en String
 
@@ -324,7 +325,6 @@ public class Main { // à renommer en main pour online compiler
             if (cod1[i]==cod2[i]) // un nombre en commun
             {compt++;}
         }
-        System.out.println("Nombre(s) bien placé(s) : "+compt);
         return compt;
     }
 
@@ -378,7 +378,7 @@ public class Main { // à renommer en main pour online compiler
                 }
             }
         }
-        System.out.println("Nombres en communs: " + nbCommuns);
+        System.out.println("Nombres de couleurs en communs: " + nbCommuns);
         return nbCommuns;
     }
 
@@ -387,18 +387,18 @@ public class Main { // à renommer en main pour online compiler
     /** pré-requis : cod1.length = cod2.length et les éléments de cod1 et cod2 sont des entiers de 0 à nbCouleurs-1
      résultat : un tableau de 2 entiers contenant à l'indice 0 (resp. 1) le nombre d'éléments communs de cod1 et cod2
      se trouvant  (resp. ne se trouvant pas) au même indice
-     Par exemple, si cod1 = (1,0,2,0) et cod2 = (0,1,0,0) la fonction retourne (1,2) : 1 bien placé (le "0" à l'indice 3)  //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-     et 2 mal placés (1 "0" et 1 "1")
+     Par exemple, si cod1 = (1,0,2,0) et cod2 = (0,1,0,0) la fonction retourne (1,2) : 1 bien placé (le "0" à l'indice 3)  
      */
     public static int[] nbBienMalPlaces(int[] cod1,int[] cod2, int nbCouleurs)
     {
         int[] t= new int[2];
         
         t[0]=nbBienPlaces(cod1,cod2);
-        System.out("("+t[0]+",");
         
         t[1]=nbCommuns(cod1,cod2,nbCouleurs)-nbBienPlaces(cod1,cod2);
-        System.out(t[1]+")");
+        
+        System.out.print("Nombres de couleurs bien et mal placées : ");
+        System.out.println("("+t[0]+"," + t[1]+")");
 
         return t;
     }
@@ -421,6 +421,9 @@ public class Main { // à renommer en main pour online compiler
     public static int mancheHumain(int lgCode, char[] tabCouleurs, int numManche, int nbEssaisMax){
 
         int score = 0;
+        int malus=0;
+        int nbMalPlaces=0;
+        
         int numEssais = 0;
         int[]codePropHumInt;
         codePropHumInt = new int [lgCode];
@@ -454,12 +457,17 @@ public class Main { // à renommer en main pour online compiler
             }
             
             sautLigne();
-            nbCommuns(codePropHumInt, codeSecret, tabCouleurs.length);
+            nbBienMalPlaces(codePropHumInt, codeSecret, tabCouleurs.length); // nombre communs est appelé dans cette fonction, il affiche donc les deux methodes
 
             if (i==nbEssaisMax-1) // Fin Manche : humain n'a pas trouvé code après nombre d'essais
             { // Cela est fait une fois nbEssaisMax atteint, on ne redemande donc pas une saisie
+            
                 System.out.println("Dommage, manche terminé !");
-                score+=nbEssaisMax;
+                
+                nbMalPlaces = nbCommuns(codePropHumInt,codeSecret,tabCouleurs.length)-nbBienPlaces(codePropHumInt,codeSecret);
+                
+                malus = nbMalPlaces + 2 * ( lgCode - (nbBienPlaces(codeSecret, codePropHumInt) + nbMalPlaces)); // calcul du malus
+                score+= nbEssaisMax + malus; // Ajout au score + malus
             }
         }
         
@@ -519,7 +527,7 @@ public class Main { // à renommer en main pour online compiler
          {
              for (int i = 0; i < t.length; i++) 
              {
-                 t[i] = saisirEntierPositif();
+                t[i] = saisirEntierPositif();
              }
          }
          return t;
@@ -724,20 +732,39 @@ public class Main { // à renommer en main pour online compiler
         System.out.println("-Nombre d'essais-");
         int nbEssaisMax = saisirEntierPositif();
         sautLigne();
+        
+        int scoreHumain=0;
+        int scoreOrdi=0;
 
         for (int i=1; i<nbManches+1;i++)
         {
             clearConsole(); sautLigne();
             
-            mancheHumain(lgCode, tabCouleurs, i, nbEssaisMax);
+            scoreOrdi += mancheHumain(lgCode, tabCouleurs, i, nbEssaisMax);
             
             clearConsole(); sautLigne();
         
-            mancheOrdinateur(lgCode, tabCouleurs, i, nbEssaisMax);
+            scoreHumain += mancheOrdinateur(lgCode, tabCouleurs, i, nbEssaisMax);
         }
         
+        // //// FIN PARTIE ///////
+        
         sautLigne();
-        System.out.println("Fin de Partie !"); 
+        System.out.println("-Fin de Partie-"); 
+        
+        if(scoreHumain==scoreHumain) //egalite
+        {
+            System.out.println("Egalité ! "); 
+        }
+        else if (scoreHumain>scoreOrdi) // humain gagnant
+        {
+            System.out.println("L'humain a gagné !"); 
+        }
+        else // ordi gagant
+        {
+            System.out.println("L'ordinateur a gagné !"); 
+        }
+        
         pause(6000);
         clearConsole(); sautLigne();
     }

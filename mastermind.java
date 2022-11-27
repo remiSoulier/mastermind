@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class mastermind { // à renommer en main pour online compiler
+public class Main { // à renommer en main pour online compiler
 
     // Fonctions Pratiques à réutiliser ///////////////////////////////////////////////////////////
 
@@ -187,9 +187,11 @@ public class mastermind { // à renommer en main pour online compiler
     /** pré-requis : t1.length = t2.length
      résultat : vrai ssi t1 et t2 contiennent la même suite d'entiers
      */
-    public static boolean sontEgaux(int[] t1, int[] t2){
+    public static boolean sontEgaux(int[] t1, int[] t2)
+    {
         boolean egaux=true;
-        for(int i=0; i<(t1.length);i++){
+        for(int i=0; i<(t1.length);i++)
+        {
             if(t1[i]!=t2[i])
             {
                 egaux = false;
@@ -232,7 +234,9 @@ public class mastermind { // à renommer en main pour online compiler
             correct=false;
             System.out.println("la longueur de codMot et de lgCode n'est pas égale");
         }
-        for (int i=0; i<(tabCouleurs.length);i++){
+        
+        for (int i=0; i<(tabCouleurs.length);i++)
+        {
             if (tabCouleurs[i]!=codMot.charAt(i))
             {   // checker chaque celule du tableau pour chaque c du string
                 correct=false;
@@ -249,9 +253,12 @@ public class mastermind { // à renommer en main pour online compiler
 
     public static int[] motVersEntiers(String codMot, char[] tabCouleurs) {
         int[] t = new int[codMot.length()];
-        for(int i=0;i<(codMot.length());i++){
-            for (int j=0;j<(tabCouleurs.length);j++){
-                if (codMot.charAt(i)==tabCouleurs[j]){
+        for(int i=0;i<(codMot.length());i++)
+        {
+            for (int j=0;j<(tabCouleurs.length);j++)
+            {
+                if (codMot.charAt(i)==tabCouleurs[j])
+                {
                     t[i]=j;
                 }
             }
@@ -360,7 +367,7 @@ public class mastermind { // à renommer en main pour online compiler
 
     /** pré-requis : les éléments de cod1 et cod2 sont des entiers de 0 à nbCouleurs-1
      résultat : le nombre d'éléments communs de cod1 et cod2, indépendamment de leur position
-     Par exemple, si cod1 = (1,0,2,0) et cod2 = (0,1,0,0) la fonction retourne 3 (2 "0" et 1 "1") //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+     Par exemple, si cod1 = (1,0,2,0) et cod2 = (0,1,0,0) la fonction retourne 3 (2 "0" et 1 "1") 
      */
     public static int nbCommuns(int[] cod1,int[] cod2, int nbCouleurs){
         int nbCommuns = 0;
@@ -406,7 +413,7 @@ public class mastermind { // à renommer en main pour online compiler
      action : effectue la (numManche)ème manche où l'ordinateur est le codeur et l'humain le décodeur
      (le paramètre numManche ne sert que pour l'affichage)
      résultat :
-     - un nombre supérieur à nbEssaisMax, calculé à partir du dernier essai du joueur humain (cf. sujet), //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+     - un nombre supérieur à nbEssaisMax, calculé à partir du dernier essai du joueur humain (cf. sujet), 
      s'il n'a toujours pas trouvé au bout du nombre maximum d'essais
      - sinon le nombre de codes proposés par le joueur humain
      */
@@ -506,14 +513,16 @@ public class mastermind { // à renommer en main pour online compiler
      action : demande au joueur humain de saisir les nombres de bien et mal placés,
      avec re-saisie éventuelle jusqu'à ce qu'elle soit correcte
      résultat : les réponses du joueur humain dans un tableau à 2 entiers*/
-     public static int[] reponseHumain(int lgCode){
+     public static int[] reponseHumain(int lgCode)
+     {
          int[] t = new int[lgCode];
-         while (repCorrecte(t,lgCode)==false) {
-             for (int i = 0; i < t.length; i++) {
+         while (repCorrecte(t,lgCode)==false) 
+         {
+             for (int i = 0; i < t.length; i++) 
+             {
                  t[i] = saisirEntierPositif();
              }
          }
-
          return t;
      }
 
@@ -526,9 +535,10 @@ public class mastermind { // à renommer en main pour online compiler
      des codes à valeurs  de 0 à nbCouleurs-1) et retourne vrai si ce code existe,
      sinon met dans cod1 le code ne contenant que des "0" et retourne faux
      */
-//    public static boolean passeCodeSuivantLexico(int[] cod1, int  nbCouleurs){ //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-    //  }
+     public static boolean passeCodeSuivantLexico(int[] cod1, int  nbCouleurs) //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+     {
+         return true;
+     }
 
     //___________________________________________________________________
 
@@ -556,7 +566,8 @@ public class mastermind { // à renommer en main pour online compiler
      cod1 selon cet ordre et compatible avec les nbCoups premières lignes de cod et rep si ce code existe,
      sinon met dans cod1 le code ne contenant que des "0" et retourne faux
      */
-    public static boolean passeCodeSuivantLexicoCompat(int [] cod1, int [][] cod,int [][] rep, int nbCoups, int  nbCouleurs){
+    public static boolean passeCodeSuivantLexicoCompat(int [] cod1, int [][] cod,int [][] rep, int nbCoups, int  nbCouleurs) // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    {
         return true;
     }
 
@@ -648,14 +659,14 @@ public class mastermind { // à renommer en main pour online compiler
 
         String coul;
 
-        System.out.println("Lors du choix de couleurs, chacune doit avoir une initiale différente, ex: Rouge Vert Bleu => R, V, B. Rose ne peut plus etre pris");
+        System.out.println("Lors du choix de couleurs, chacune doit avoir une initiale différente, ex: Rouge Vert Bleu => R, V, B. Rose ne peut pas etre pris");
         for (int i=0; i<(tabCoul.length);i++) // Saisie tableau couleurs
         {
             System.out.println("Saisissez une couleur souhaitée");
             coul = input.next();
             while (estPresent(tabCoul,coul.charAt(0)) == true) // saisie incorrect (doublon)
             {
-                System.out.println("Initiale déjà prise, saisissez une couleur qui n'a pas comme première lettre "+"'" +coul.charAt(0)+"'");
+                System.out.println("Initiale déjà prise, saisissez une couleur qui n'a pas comme première lettre '" +coul.charAt(0)+"'");
                 coul = input.next();
             }
             tabCoul[i]= coul.charAt(0);
@@ -690,13 +701,17 @@ public class mastermind { // à renommer en main pour online compiler
 
     public static void masterMind ()
     {
+        // Init partie
         Scanner scanner;
         scanner = new Scanner (System.in);
 
         sautLigne();
         System.out.println("-Bienvenue dans le Master Mind-");
         sautLigne();
-
+        
+        System.out.println("-Initialisation de la partie-");
+        sautLigne();
+        
         System.out.println("-Nombre de pions du code secret-");
         int lgCode = saisirEntierPositif();
         sautLigne();
@@ -712,10 +727,11 @@ public class mastermind { // à renommer en main pour online compiler
         int nbEssaisMax = saisirEntierPositif();
         sautLigne();
 
+        clearConsole();
         System.out.println("-Initialisation terminée-");
         sautLigne();
 
-        ////////////////////// SELECTION TYPE DE PARTIE  /////////////////////////////////////
+        ////////////////////// SELECTION TYPE DE PARTIE - DEROULEMENT  /////////////////////////////////////
 
         while(true)
         {
@@ -723,15 +739,17 @@ public class mastermind { // à renommer en main pour online compiler
             System.out.println("-Type de Partie-");
             System.out.println("Décodeur Humain Contre Codeur IA     [1]");
             System.out.println("Codeur Humain Contre Decodeur IA     [2] (//////)");
+            System.out.println("Quitter le programme                 [3]");
 
             sautLigne();
             int input = scanner.nextInt();
 
             if (input == 1) // Manche Humain
             {
-                sautLigne();
+                clearConsole(); sautLigne();
                 System.out.println("-Mode choisie : Décodeur Humain Contre Codeur IA-");
                 System.out.println("A toi de jouer !"); sautLigne();
+                
                 for (int i=1; i<nbManches+1;i++)
                 {
                     mancheHumain(lgCode, tabCouleurs, i, nbEssaisMax);
@@ -740,15 +758,26 @@ public class mastermind { // à renommer en main pour online compiler
             }
             else if (input == 2) // Manche IA
             {
+                clearConsole(); sautLigne();
+                System.out.println("-Mode choisie : Codeur Humain Contre Decodeur IA-");
+                System.out.println("A toi de jouer !"); sautLigne();
+                    
                 for (int i=1; i<nbManches+1;i++)
                 {
                     mancheOrdinateur(lgCode, tabCouleurs, nbManches, nbEssaisMax);
                     sautLigne();
                 }
             }
+            else if (input == 2) // Quitter proramme
+            {
+                clearConsole();
+                System.out.println("Merci d'avoir joué !"); pause(1200);
+                System.exit(1);    
+            }
+            
             System.out.println("Fin de Partie !");
             sautLigne();
-        }
+         }
         ///////////////////////////////////////////////////////////////////////////////////////
-    }
+      }
 }

@@ -445,12 +445,6 @@ public class Main { // à renommer en main pour online compiler
             codePropHumInt = propositionCodeHumain(numEssais, lgCode, tabCouleurs); // Saisie humain du code retournée en entier
             codePropHumMot = entiersVersMot(codePropHumInt, tabCouleurs); // conversion du code proposé d'entier en mots (entier en ch caract)
 
-            while (codeCorrect(codePropHumMot, lgCode, tabCouleurs) == false) // saisie incorrect, reessaie de la saisie
-            {
-                codePropHumInt = propositionCodeHumain(i+1, lgCode, tabCouleurs); // Saisie humain du code retournée en entier
-                codePropHumMot = entiersVersMot(codePropHumInt, tabCouleurs); // conversion du code proposé d'entier en mots (entier en ch caract)
-            }
-
             if (nbBienPlaces(codeSecret, codePropHumInt) == codeSecret.length)  // Fin Manche : code trouvé
             {
                 System.out.println("Bravo, Code trouvé !");
@@ -472,6 +466,9 @@ public class Main { // à renommer en main pour online compiler
                 return score;
             }
         }
+        
+        System.out.println("Le code était: "+ entiersVersMot(codeSecret,tabCouleurs) );
+        sautLigne();
         System.out.println("Ton Score: "+score);
         return score;
     }
@@ -493,7 +490,6 @@ public class Main { // à renommer en main pour online compiler
         {
             codStr += tabCouleurs[cod[i]];
         }
-        System.out.println("Code proposé: "+codStr);
         return codStr;
     }
 
@@ -619,6 +615,7 @@ public class Main { // à renommer en main pour online compiler
             System.out.println("Saisissez un entier positif");
             saisie = scanner.nextInt();
         }
+        ;
         return saisie;
     }
 

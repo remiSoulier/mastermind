@@ -702,40 +702,17 @@ public class Main { // à renommer en main pour online compiler
 
     public static void masterMind ()
     {
-        Scanner scanner;
-        scanner = new Scanner (System.in);
-        
         System.out.println("-Bienvenue dans le Master Mind-");
+        sautLigne();
         
-        ////////////////////// SELECTION TYPE DE PARTIE - DEROULEMENT  /////////////////////////////////////
         while(true)
         {
-            sautLigne();
-            
-            System.out.println("-Type de Partie-");
-            System.out.println("Décodeur Humain Contre Codeur IA     [1]");
-            System.out.println("Codeur Humain Contre Decodeur IA     [2] (//////)");
-            System.out.println("Quitter le programme                 [3]");
-
-            sautLigne();
-            int input = scanner.nextInt();
-            mancheInit(input);
+            mancheInit();
         }
-        ///////////////////////////////////////////////////////////////////////////////////////
     }
     
-    public static void mancheInit(int input)
+    public static void mancheInit()
     {
-        // Init partie
-        clearConsole(); sautLigne();
-        
-        if (input == 3) // Fin du proramme sans la saisie
-        {
-            clearConsole();
-            System.out.println("Merci d'avoir joué !"); pause(1200);
-            System.exit(1);    
-        }
-        
         System.out.println("-Initialisation de la partie-");
         sautLigne();
         
@@ -758,29 +735,26 @@ public class Main { // à renommer en main pour online compiler
         System.out.println("-Initialisation terminée-");
         sautLigne();
 
-        if (input == 1) // Manche Humain
+        clearConsole(); sautLigne();
+        System.out.println("-Manche : Décodeur Humain Contre Codeur IA-");
+        System.out.println("A toi de decoder !");
+        
+        for (int i=1; i<nbManches+1;i++)
         {
-            for (int i=1; i<nbManches+1;i++)
-            {
-                sautLigne();
-                mancheHumain(lgCode, tabCouleurs, i, nbEssaisMax);
-            }
-        }
-        else if (input == 2) // Manche IA
-        {
-            clearConsole(); sautLigne();
-            System.out.println("-Mode choisie : Codeur Humain Contre Decodeur IA-");
-            System.out.println("A toi de jouer !"); sautLigne();
+            sautLigne();
+            mancheHumain(lgCode, tabCouleurs, i, nbEssaisMax);
             
-            for (int i=1; i<nbManches+1;i++)
-            {
-                mancheOrdinateur(lgCode, tabCouleurs, i, nbEssaisMax);
-                sautLigne();
-                
-            }
+            clearConsole(); sautLigne();
+            
+            System.out.println("-Mode : Codeur Humain Contre Decodeur IA-");
+            System.out.println("Au tour de l'adversaire de decoder !"); sautLigne();
+        
+            mancheOrdinateur(lgCode, tabCouleurs, i, nbEssaisMax);
         }
         
-        System.out.println("Fin de Partie !"); pause(2000);
+        sautLigne();
+        System.out.println("Fin de Partie !"); 
+        pause(5000);
         clearConsole(); sautLigne();
     }
 }

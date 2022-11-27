@@ -431,8 +431,8 @@ public class Main { // à renommer en main pour online compiler
 
         clearConsole(); sautLigne();
         
-        System.out.println("-Mode choisie : Décodeur Humain Contre Codeur IA-");
-        System.out.println("A toi de jouer !");
+        System.out.println("-Manche : Décodeur Humain Contre Codeur IA-");
+        System.out.println("A toi de décoder !");
         
         sautLigne();
         
@@ -451,19 +451,14 @@ public class Main { // à renommer en main pour online compiler
                 score += numEssais;
                 return score;
             }
-            else
-            {
-                System.out.println("Code Secret non trouvé !");
-                sautLigne();
-
-                nbCommuns(codePropHumInt, codeSecret, tabCouleurs.length);
-            }
+            
+            sautLigne();
+            nbCommuns(codePropHumInt, codeSecret, tabCouleurs.length);
 
             if (i==nbEssaisMax-1) // Fin Manche : humain n'a pas trouvé code après nombre d'essais
             { // Cela est fait une fois nbEssaisMax atteint, on ne redemande donc pas une saisie
                 System.out.println("Dommage, manche terminé !");
-                score=nbEssaisMax;
-                return score;
+                score+=nbEssaisMax;
             }
         }
         
@@ -731,23 +726,13 @@ public class Main { // à renommer en main pour online compiler
         int nbEssaisMax = saisirEntierPositif();
         sautLigne();
 
-        clearConsole();
-        System.out.println("-Initialisation terminée-");
-        sautLigne();
-
-        clearConsole(); sautLigne();
-        System.out.println("-Manche : Décodeur Humain Contre Codeur IA-");
-        System.out.println("A toi de decoder !");
-        
         for (int i=1; i<nbManches+1;i++)
         {
-            sautLigne();
+            clearConsole(); sautLigne();
+            
             mancheHumain(lgCode, tabCouleurs, i, nbEssaisMax);
             
             clearConsole(); sautLigne();
-            
-            System.out.println("-Manche : Codeur Humain Contre Decodeur IA-");
-            System.out.println("Au tour de l'adversaire de decoder !"); sautLigne();
         
             mancheOrdinateur(lgCode, tabCouleurs, i, nbEssaisMax);
         }

@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Main { // à renommer en main pour online compiler
+public class mastermind { // à renommer en main pour online compiler
 
     // Fonctions Pratiques à réutiliser ///////////////////////////////////////////////////////////
 

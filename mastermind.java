@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Main { // à renommer en main pour online compiler
+public class mastermind { // à renommer en main pour online compiler
 
     // Fonctions Pratiques à réutiliser ///////////////////////////////////////////////////////////
 
@@ -420,26 +420,16 @@ public class Main { // à renommer en main pour online compiler
      */
     public static int mancheHumain(int lgCode, char[] tabCouleurs, int numManche, int nbEssaisMax){
 
-        int score = 0;
-        int malus=0;
-        int nbMalPlaces=0;
-        
-        int numEssais = 0;
-        int[]codePropHumInt;
+        int score=0 ,malus=0, nbMalPlaces=0, numEssais = 0;
+        int[]codePropHumInt,codeSecret;
         codePropHumInt = new int [lgCode];
-        String codePropHumMot;
-
-        int[] codeSecret;
         codeSecret = new int [lgCode];
         codeSecret=codeAleat(lgCode, tabCouleurs.length);
 
+        String codePropHumMot;
+        // Affichage
         clearConsole(); sautLigne();
-        
-        System.out.println("-Manche : Décodeur Humain Contre Codeur IA-");
-        System.out.println("A toi de décoder !");
-        
-        sautLigne();
-        
+        System.out.println("-Manche : Décodeur Humain Contre Codeur IA- A toi de décoder !"); sautLigne();
         System.out.println("Manche n° "+ numManche);
 
         for (int i=0; i<nbEssaisMax;i++)
@@ -454,28 +444,18 @@ public class Main { // à renommer en main pour online compiler
                 System.out.println("Bravo, Code trouvé !");
                 score += numEssais;
                 return score;
-            }
-            
-            sautLigne();
-            nbBienMalPlaces(codePropHumInt, codeSecret, tabCouleurs.length); // nombre communs est appelé dans cette fonction, il affiche donc les deux methodes
 
-            if (i==nbEssaisMax-1) // Fin Manche : humain n'a pas trouvé code après nombre d'essais
-            { // Cela est fait une fois nbEssaisMax atteint, on ne redemande donc pas une saisie
-            
-                System.out.println("Dommage, manche terminé !");
-                
-                nbMalPlaces = nbCommuns(codePropHumInt,codeSecret,tabCouleurs.length)-nbBienPlaces(codePropHumInt,codeSecret);
-                
-                malus = nbMalPlaces + 2 * ( lgCode - (nbBienPlaces(codeSecret, codePropHumInt) + nbMalPlaces)); // calcul du malus
-                score+= nbEssaisMax + malus; // Ajout au score + malus
             }
+            sautLigne();
+            nbBienMalPlaces(codePropHumInt, codeSecret, tabCouleurs.length); // nombres communs est appelé dans cette fonction, il affiche donc les deux méthodes
         }
-        
-        System.out.println("Le code était: "+ entiersVersMot(codeSecret,tabCouleurs) );
-        sautLigne();
-        System.out.println("Ton Score: "+score); pause(9500);
-        clearConsole();
-        
+        // Fin Manche : Code pas trouvé + CALCUL DU MALUS
+        nbMalPlaces = nbCommuns(codePropHumInt,codeSecret,tabCouleurs.length)-nbBienPlaces(codePropHumInt,codeSecret);
+        malus = nbMalPlaces + 2 * ( lgCode - (nbBienPlaces(codeSecret, codePropHumInt) + nbMalPlaces));
+        score+= nbEssaisMax + malus;
+
+        System.out.println("Dommage, manche terminé !   Le code était: "+ entiersVersMot(codeSecret,tabCouleurs) ); sautLigne()
+        System.out.println("Ton Score: "+score); pause(9500); clearConsole();
         return score;
     }
 

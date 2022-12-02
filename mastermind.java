@@ -271,19 +271,22 @@ public class mastermind { // à renommer en main pour online compiler
     {
         char[] prop;
         prop = new char [lgCode];
-        String propStr="";
+        String propStr;
 
         System.out.println("Saisissez proposition n°"+nbCoups+" de code");
         prop = Ut.saisirCharArray();
 
-        while (prop.length != lgCode )
+        while (prop.length != lgCode)
         {
             System.out.println("Saisie incorrect, veuillez recommencer");
             prop = Ut.saisirCharArray();
         }
 
-        propStr += prop;
-        return motVersEntiers(propStr,tabCouleurs);// conversion  en int[]
+        propStr = new String (prop);
+        return motVersEntiers(propStr,tabCouleurs);
+
+
+
     }
 
     //____________________________________________________________

@@ -12,12 +12,7 @@ public class mastermind { // à renommer en main pour online compiler
 
     // Met en pause le programme
     public static void pause (int timeMilli) {
-        // Action : suspend le processus courant pendant timeMilli millisecondes
-        try {
-            Thread.sleep(timeMilli);
-        } catch(InterruptedException ex) {
-            ex.printStackTrace();
-        }
+        Ut.pause(timeMilli);
     }
 
     public static void sautLigne()
@@ -274,42 +269,21 @@ public class mastermind { // à renommer en main pour online compiler
 
     public static int[] propositionCodeHumain(int nbCoups, int lgCode, char[] tabCouleurs)
     {
-        Scanner scanner = new Scanner (System.in);
-        char saisie;
+        char[] prop;
+        prop = new char [lgCode];
+        String propStr="";
 
-        int[] propCodeHumain;
-        propCodeHumain = new int [lgCode];
-        
-        // VAR D'AFFICHAGE
-        int indiceAff = 1; // affichage de l'indice sans i=0
+        System.out.println("Saisissez proposition n°"+nbCoups+" de code");
+        prop = Ut.saisirCharArray();
 
-        String propStr ="";
-
-        for (int i=0; i<lgCode;i++)
+        while (prop.length != lgCode )
         {
-            System.out.println("Saisissez proposition n°"+nbCoups+" de code");
-            System.out.println("Couleur n°"+ indiceAff);
-            saisie = scanner.next().charAt(0);
-
-            while (estPresent(tabCouleurs,saisie) != true) // saisie incorrect
-            {
-                estPresentAff(tabCouleurs,saisie);
-
-                System.out.println("Proposition n°"+nbCoups+" de code");
-                System.out.println("Veillez resaisir couleur n°"+ indiceAff);
-                saisie = scanner.next().charAt(0);
-            }
-            
-            propCodeHumain[i] = saisie;
-            propStr += saisie; // Conversion en String
-
-            indiceAff++;
+            System.out.println("Saisie incorrect, veuillez recommencer");
+            prop = Ut.saisirCharArray();
         }
 
-        System.out.println("Code proposé :   "+propStr);
-        sautLigne();
-
-        return motVersEntiers(propStr,tabCouleurs);// Pour convertir le code saisie initalement en char, en int[]
+        propStr += prop;
+        return motVersEntiers(propStr,tabCouleurs);// conversion  en int[]
     }
 
     //____________________________________________________________
@@ -423,10 +397,12 @@ public class mastermind { // à renommer en main pour online compiler
         int score=0 ,malus=0, nbMalPlaces=0, numEssais = 0;
         int[]codePropHumInt,codeSecret;
         codePropHumInt = new int [lgCode];
+
         codeSecret = new int [lgCode];
         codeSecret=codeAleat(lgCode, tabCouleurs.length);
 
         String codePropHumMot;
+
         // Affichage
         clearConsole(); sautLigne();
         System.out.println("-Manche : Décodeur Humain Contre Codeur IA- A toi de décoder !"); sautLigne();
@@ -435,7 +411,6 @@ public class mastermind { // à renommer en main pour online compiler
         for (int i=0; i<nbEssaisMax;i++)
         {
             numEssais=i+1;
-
             codePropHumInt = propositionCodeHumain(numEssais, lgCode, tabCouleurs); // Saisie humain du code retournée en entier
             codePropHumMot = entiersVersMot(codePropHumInt, tabCouleurs); // conversion du code proposé d'entier en mots (entier en ch caract)
 
@@ -449,13 +424,13 @@ public class mastermind { // à renommer en main pour online compiler
             sautLigne();
             nbBienMalPlaces(codePropHumInt, codeSecret, tabCouleurs.length); // nombres communs est appelé dans cette fonction, il affiche donc les deux méthodes
         }
+
         // Fin Manche : Code pas trouvé + CALCUL DU MALUS
         nbMalPlaces = nbCommuns(codePropHumInt,codeSecret,tabCouleurs.length)-nbBienPlaces(codePropHumInt,codeSecret);
         malus = nbMalPlaces + 2 * ( lgCode - (nbBienPlaces(codeSecret, codePropHumInt) + nbMalPlaces));
         score+= nbEssaisMax + malus;
 
-        System.out.println("Dommage, manche terminé !   Le code était: "+ entiersVersMot(codeSecret,tabCouleurs) ); sautLigne()
-        System.out.println("Ton Score: "+score); pause(9500); clearConsole();
+        System.out.println("Dommage, manche terminé !   Le code était: "+ entiersVersMot(codeSecret,tabCouleurs)+"Ton Score: "+score);
         return score;
     }
 
@@ -553,7 +528,7 @@ public class mastermind { // à renommer en main pour online compiler
      cod1 selon cet ordre et compatible avec les nbCoups premières lignes de cod et rep si ce code existe,
      sinon met dans cod1 le code ne contenant que des "0" et retourne faux
      */
-    public static boolean passeCodeSuivantLexicoCompat(int [] cod1, int [][] cod,int [][] rep, int nbCoups, int  nbCouleurs) // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    public static boolean passeCodeSuivantLexicoCompat(int [] cod1, int [][] cod,int [][] rep, int nbCoups, int  nbCouleurs) // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     {
         return true;
     }
@@ -571,7 +546,7 @@ public class mastermind { // à renommer en main pour online compiler
      s'il n'a toujours pas trouvé au bout du nombre maximum d'essais
      - sinon le nombre de codes proposés par l'ordinateur
      */
-    public static int mancheOrdinateur(int lgCode,char[] tabCouleurs, int numManche, int nbEssaisMax) {
+    public static int mancheOrdinateur(int lgCode,char[] tabCouleurs, int numManche, int nbEssaisMax) {  //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         return 0;
     }
 
@@ -658,7 +633,6 @@ public class mastermind { // à renommer en main pour online compiler
             tabCoul[i]= coul.charAt(0);
         }
         System.out.print("Couleurs choisis: " + listElem(tabCoul));
-
         return tabCoul;
     }
     //____________________________________________________________
@@ -689,11 +663,11 @@ public class mastermind { // à renommer en main pour online compiler
         
         while(true)
         {
-            mancheInit();
+            mancheDéroulement();
         }
     }
     
-    public static void mancheInit()
+    public static void mancheDéroulement()
     {
         System.out.println("-Initialisation de la partie-");
         sautLigne();
@@ -713,12 +687,11 @@ public class mastermind { // à renommer en main pour online compiler
         int nbEssaisMax = saisirEntierPositif();
         sautLigne();
         
-        int scoreHumain=0;
-        int scoreOrdi=0;
+        int scoreHumain=0, scoreOrdi=0;
 
         for (int i=1; i<nbManches+1;i++)
         {
-            clearConsole(); sautLigne();
+            clearConsole();
             
             scoreOrdi += mancheHumain(lgCode, tabCouleurs, i, nbEssaisMax);
             
@@ -727,20 +700,20 @@ public class mastermind { // à renommer en main pour online compiler
             scoreHumain += mancheOrdinateur(lgCode, tabCouleurs, i, nbEssaisMax);
         }
         
-        // //// FIN PARTIE ///////
+        ////// FIN PARTIE ///////
         
         sautLigne();
         System.out.println("-Fin de Partie-"); 
         
-        if(scoreHumain==scoreHumain) //egalite
+        if(scoreHumain==scoreHumain) // EGALITE
         {
             System.out.println("Egalité ! "); 
         }
-        else if (scoreHumain>scoreOrdi) // humain gagnant
+        else if (scoreHumain>scoreOrdi) // HUMAIN GAGNANT
         {
             System.out.println("L'humain a gagné !"); 
         }
-        else // ordi gagant
+        else // ORDI GAGANT
         {
             System.out.println("L'ordinateur a gagné !"); 
         }

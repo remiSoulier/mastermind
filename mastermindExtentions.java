@@ -768,4 +768,32 @@ public class mastermindExtentions { // à renommer en main pour online compiler
         pause(6000);
         clearConsole(); sautLigne();
     }
+
+    /** pré-requis : cod est une matrice, rep est une matrice à 2 colonnes,
+     0 <= nbCoups < cod.length, nbCoups < rep.length et
+     les éléments de cod sont des entiers de 0 à tabCouleurs.length -1
+     action : affiche les nbCoups premières lignes de cod (sous forme
+     de mots en utilisant le tableau tabCouleurs) et de rep
+     */
+    public static void affichePlateau(int [][] cod, int [][] rep, int nbCoups, char[] tabCouleurs, char[][] bienMalPlace){
+        Ut.clearConsole();
+        System.out.print("|");
+        for (int i=0;i<cod.length;i++){
+            System.out.print(" ");
+        }
+        System.out.println("| b m |");
+        System.out.print("-");
+        for (int i=0;i<cod.length;i++){
+            System.out.print("-");
+        }
+        System.out.println("-------");
+        for (int i=0;i<nbCoups;i++){
+            System.out.print("|");
+            for (int j=0;j< cod.length;j++){
+                System.out.print(tabCouleurs[cod[i][j]]);
+            }
+            System.out.print("| "+bienMalPlace[0][nbCoups]+" "+bienMalPlace[1][nbCoups]+" |");
+
+        }
+    }
 }

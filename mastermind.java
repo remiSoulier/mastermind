@@ -284,9 +284,6 @@ public class mastermind { // à renommer en main pour online compiler
 
         propStr = new String (prop);
         return motVersEntiers(propStr,tabCouleurs);
-
-
-
     }
 
     //____________________________________________________________

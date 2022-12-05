@@ -81,21 +81,18 @@ public class mastermind { // à renommer en main pour online compiler
      résultat : le plus grand indice d'une case de t contenant c s'il existe, -1 sinon*/
     public static int plusGrandIndice(char[] t, char c)
     {
-        int plusGrandIndice=0;
-
         for (int i=0; i<t.length;i++)
         {
             if(t[i]==c) // c est elem de t[]
             {
-                plusGrandIndice=i;
-                i=t.length; // Sort de la boucle comme l'élément est trouvé pour éviter de modif plusGrandIndice
+                return i;
             }
             else
             {
-                plusGrandIndice= -1; // c n'est pas élément
+                return -1; // c n'est pas élément
             }
         }
-        return plusGrandIndice;
+        return 0;
     }
 
     //____________________________________________________________
@@ -105,37 +102,34 @@ public class mastermind { // à renommer en main pour online compiler
      */
     public static boolean estPresent(char[] t, char c)
     {
-        boolean estPresent=false; // valeur à retourner
-
         if (plusGrandIndice(t,c)>=0) // c est un élément de t
         {
-            estPresent=true;
+            return true;
         }
         else // c n'est pas un élément de t
         {
-            estPresent=false;
+            return false;
         }
-        return estPresent;
+        return false;
     }
     //____________________________________________________________
     // action: Affiche si c est élement de t[] et à quel indice
     public static boolean estPresentAff(char[] t, char c)
     {
-        boolean estPresent=false; // valeur à retourner
         int indiceElem=0; // affichage de l'indice de l'elem
 
         if (plusGrandIndice(t,c)>=0) // c est un élément de t
         {
-            estPresent=true;
             indiceElem=plusGrandIndice(t,c);
             System.out.println(c+" est present dans les couleurs possible à l'indice "+indiceElem+".");
+            return true;
         }
         else // c n'est pas un élément de t
         {
-            estPresent=false;
             System.out.println(c+" n'est pas present dans les couleurs possibles.");
+            return false;
         }
-        return estPresent;
+        return false;
     }
 
     //____________________________________________________________
@@ -213,7 +207,6 @@ public class mastermind { // à renommer en main pour online compiler
         {
             t[i]= random.nextInt((nbCouleurs-1) +1);
         }
-
         return t;
     }
     //____________________________________________________________
@@ -297,7 +290,9 @@ public class mastermind { // à renommer en main pour online compiler
         for (int i=0; i< cod1.length; i++)
         {
             if (cod1[i]==cod2[i]) // un nombre en commun
-            {compt++;}
+            {
+                compt++;
+            }
         }
         return compt;
     }
@@ -395,12 +390,11 @@ public class mastermind { // à renommer en main pour online compiler
     public static int mancheHumain(int lgCode, char[] tabCouleurs, int numManche, int nbEssaisMax){
 
         int score=0 ,malus=0, nbMalPlaces=0, numEssais = 0;
+        
         int[]codePropHumInt,codeSecret;
         codePropHumInt = new int [lgCode];
-
-        codeSecret = new int [lgCode];
+        codeSecret = new int [lgCode]; // Creation du code secret
         codeSecret=codeAleat(lgCode, tabCouleurs.length);
-
         String codePropHumMot;
 
         // Affichage
@@ -419,9 +413,7 @@ public class mastermind { // à renommer en main pour online compiler
                 System.out.println("Bravo, Code trouvé !");
                 score += numEssais;
                 return score;
-
             }
-            sautLigne();
             nbBienMalPlaces(codePropHumInt, codeSecret, tabCouleurs.length); // nombres communs est appelé dans cette fonction, il affiche donc les deux méthodes
         }
 
@@ -430,7 +422,7 @@ public class mastermind { // à renommer en main pour online compiler
         malus = nbMalPlaces + 2 * ( lgCode - (nbBienPlaces(codeSecret, codePropHumInt) + nbMalPlaces));
         score+= nbEssaisMax + malus;
 
-        System.out.println("Dommage, manche terminé !   Le code était: "+ entiersVersMot(codeSecret,tabCouleurs)+"Ton Score: "+score);
+        System.out.println("Dommage, manche terminé !   Le code était: "+ entiersVersMot(codeSecret,tabCouleurs)+"  Ton Score: "+score);
         return score;
     }
 
@@ -445,12 +437,8 @@ public class mastermind { // à renommer en main pour online compiler
      */
     public static String entiersVersMot(int[] cod, char[] tabCouleurs)
     {
-        String codStr="";
-
-        for (int i=0; i<cod.length;i++)
-        {
-            codStr += tabCouleurs[cod[i]];
-        }
+        String codStr;
+        codStr = new String (cod);
         return codStr;
     }
 
@@ -463,7 +451,9 @@ public class mastermind { // à renommer en main pour online compiler
      */
     public static boolean repCorrecte(int[] rep, int lgCode){
         boolean repCorrect=false;
-        if ((rep[0]>=0)&&(rep[1]>=0)&&(rep[0]+rep[1]==lgCode)){
+        
+        if ((rep[0]>=0)&&(rep[1]>=0)&&(rep[0]+rep[1]==lgCode))
+        {
             repCorrect=true;
         }
         return repCorrect;
@@ -478,6 +468,7 @@ public class mastermind { // à renommer en main pour online compiler
      public static int[] reponseHumain(int lgCode)
      {
          int[] t = new int[lgCode];
+         
          while (repCorrecte(t,lgCode)==false) 
          {
              for (int i = 0; i < t.length; i++) 
@@ -571,9 +562,9 @@ public class mastermind { // à renommer en main pour online compiler
         System.out.println("Saisissez un entier positif");
         saisie = scanner.nextInt();
 
-        if (saisie <=0) // si impaire ou pas inferieur ou égale à 0
+        if (saisie <=0) // si l'entier saisie n'est pas strictement positif
         {
-            System.out.println("Saisissez un entier positif");
+            System.out.println("Resaisissez un entier positif");
             saisie = scanner.nextInt();
         }
         return saisie;
@@ -595,10 +586,10 @@ public class mastermind { // à renommer en main pour online compiler
         System.out.println("Saisissez un entier pair positif");
         saisie = input.nextInt();
 
-        // si impaire ou pas inferieur ou égale à 0
+        // si impaire ou pas strictement positif
         if (saisie %2!=0 || saisie <=0) // recommancer saisie
         {
-            System.out.println("Saisissez un entier pair positif");
+            System.out.println("Reaisissez un entier pair positif");
             saisie = input.nextInt();
         }
         return saisie;
@@ -717,6 +708,7 @@ public class mastermind { // à renommer en main pour online compiler
         {
             System.out.println("L'ordinateur a gagné !"); 
         }
+        //////////////////////////////
         
         pause(6000);
         clearConsole(); sautLigne();

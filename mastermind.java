@@ -587,7 +587,7 @@ public class mastermind { // à renommer en main pour online compiler
         saisie = input.nextInt();
 
         // si impaire ou pas strictement positif
-        if (saisie %2!=0 || saisie <=0) // recommancer saisie
+        if (saisie %2!=0 || saisie <=0 && saisie.hasNextInt()) //saisie   
         {
             System.out.println("Reaisissez un entier pair positif");
             saisie = input.nextInt();
@@ -616,7 +616,7 @@ public class mastermind { // à renommer en main pour online compiler
         {
             System.out.println("Saisissez une couleur souhaitée");
             coul = input.next();
-            while (estPresent(tabCoul,coul.charAt(0)) == true) // saisie incorrect (doublon)
+            while (Present(tabCoul,coul.charAt(0)) == true) // saisie incorrect (doublon)
             {
                 System.out.println("Initiale déjà prise, saisissez une couleur qui n'a pas comme première lettre '" +coul.charAt(0)+"'");
                 coul = input.next();

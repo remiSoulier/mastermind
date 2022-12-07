@@ -7,22 +7,26 @@ public class mastermind { // à renommer en main pour online compiler
     public static void clearConsole()
     {
         // Action : efface la console (le terminal)
-        System.out.print("\033[H\033[2J");
+        Ut.clearConsole();
     }
 
     // Met en pause le programme
-    public static void pause (int timeMilli) {
+    public static void pause (int timeMilli) 
+    {
         Ut.pause(timeMilli);
     }
 
     public static void sautLigne()
-    {System.out.println();}
+    {
+        Ut.sautLigne();
+    }
 
     public static void DoubleSautLigne()
-    {sautLigne();sautLigne();}
+    {Ut.sautLigne();Ut.sautLigne();}
 
-    public static void affTabInt (int[]tab)
+    public static void affTabInt (int[]tab) 
     {
+        // Action : affiche tableau d'entiers
         for (int i=0; i<tab.length;i++)
         {
             System.out.print(tab[i]+" ");
@@ -92,7 +96,6 @@ public class mastermind { // à renommer en main pour online compiler
                 return -1; // c n'est pas élément
             }
         }
-        return 0;
     }
 
     //____________________________________________________________
@@ -140,7 +143,6 @@ public class mastermind { // à renommer en main pour online compiler
      */
     public static boolean elemDiff(char[] t)
     {
-        boolean sontDiff=false;
 
         int indiceSecDoublon=0; // remplace j comme sa valeur affiche est hors de la boucle for
 
@@ -150,25 +152,17 @@ public class mastermind { // à renommer en main pour online compiler
             {
                 if (plusGrandIndice(t, t[j])==i) // est un doublon de t
                 {
-                    sontDiff=false;
                     indiceSecDoublon=j;
-                    j=t.length; // fait sortir de la boucle for car doublon trouve
+                    System.out.println(t[i]+" est un DOUBLON à la case "+i+" et "+indiceSecDoublon+".");
+                    return false;
                 }
                 else // n'est pas un doublon
                 {
-                    sontDiff=true;
+                    System.out.println(t[i]+" n'est PAS un DOUBLON.");
+                    return true;
                 }
             }
-            if (sontDiff==false) // est un doublon de t
-            {
-                System.out.println(t[i]+" est un DOUBLON à la case "+i+" et "+indiceSecDoublon+".");
-            }
-            else
-            {
-                System.out.println(t[i]+" n'est PAS un DOUBLON.");
-            }
         }
-        return sontDiff;
     }
     //____________________________________________________________
     /** pré-requis : t1.length = t2.length
@@ -324,7 +318,6 @@ public class mastermind { // à renommer en main pour online compiler
             tabFrequence[i]=compt;
             System.out.print(tabFrequence[i]);
         }
-        
         return tabFrequence;
     }
 

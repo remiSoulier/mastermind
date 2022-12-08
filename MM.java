@@ -68,13 +68,20 @@ public class MM { // à renommer en main pour online compiler
      résultat : la liste des éléments de t entre parenthèses et séparés par des virgules */
     public static String listElem(char[] t)
     {
-        String listElem=""; // liste vide
+        String listElem="("; // liste vide
 
-        for (int i=0;i<(t.length-1);i++)
+        for (int i=0;i<t.length;i++)
         {
-            listElem+="("+t[i]+"),";
+
+            listElem+=t[i];
+
+            if (i!=t.length-1)
+            {
+                listElem+=(',');
+            }
         }
-        listElem+="("+t[t.length-1]+")";
+
+        listElem+=(')');
         return listElem;
     }
     //____________________________________________________________
@@ -228,7 +235,7 @@ public class MM { // à renommer en main pour online compiler
             correct=false;
             System.out.println("la longueur de codMot et de lgCode n'est pas égale");
         }
-        
+
         for (int i=0; i<(tabCouleurs.length);i++)
         {
             if (tabCouleurs[i]!=codMot.charAt(i))
@@ -277,13 +284,17 @@ public class MM { // à renommer en main pour online compiler
         System.out.println("Saisissez proposition n°"+nbCoups+" de code");
         prop = Ut.saisirCharArray();
 
-        while (prop.length != lgCode )
+        while (prop.length != lgCode) // saisie incorrect
         {
             System.out.println("Saisie incorrect, veuillez recommencer");
             prop = Ut.saisirCharArray();
         }
 
-        propStr += prop;
+        for (int i=0; i<prop.length;i++)
+        {
+            propStr+=prop[i];
+        }
+
         return motVersEntiers(propStr,tabCouleurs);// conversion  en int[]
     }
 
@@ -330,7 +341,7 @@ public class MM { // à renommer en main pour online compiler
             tabFrequence[i]=compt;
             System.out.print(tabFrequence[i]);
         }
-        
+
         return tabFrequence;
     }
 
@@ -367,11 +378,11 @@ public class MM { // à renommer en main pour online compiler
     public static int[] nbBienMalPlaces(int[] cod1,int[] cod2, int nbCouleurs)
     {
         int[] t= new int[2];
-        
+
         t[0]=nbBienPlaces(cod1,cod2);
-        
+
         t[1]=nbCommuns(cod1,cod2,nbCouleurs)-nbBienPlaces(cod1,cod2);
-        
+
         System.out.print("Nombres de couleurs bien et mal placées : ");
         System.out.println("("+t[0]+"," + t[1]+")");
 
@@ -476,18 +487,18 @@ public class MM { // à renommer en main pour online compiler
      action : demande au joueur humain de saisir les nombres de bien et mal placés,
      avec re-saisie éventuelle jusqu'à ce qu'elle soit correcte
      résultat : les réponses du joueur humain dans un tableau à 2 entiers*/
-     public static int[] reponseHumain(int lgCode)
-     {
-         int[] t = new int[lgCode];
-         while (repCorrecte(t,lgCode)==false) 
-         {
-             for (int i = 0; i < t.length; i++) 
-             {
+    public static int[] reponseHumain(int lgCode)
+    {
+        int[] t = new int[lgCode];
+        while (repCorrecte(t,lgCode)==false)
+        {
+            for (int i = 0; i < t.length; i++)
+            {
                 t[i] = saisirEntierPositif();
-             }
-         }
-         return t;
-     }
+            }
+        }
+        return t;
+    }
 
     //___________________________________________________________________
 
@@ -498,10 +509,10 @@ public class MM { // à renommer en main pour online compiler
      des codes à valeurs  de 0 à nbCouleurs-1) et retourne vrai si ce code existe,
      sinon met dans cod1 le code ne contenant que des "0" et retourne faux
      */
-     public static boolean passeCodeSuivantLexico(int[] cod1, int  nbCouleurs) //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-     {
-         return true;
-     }
+    public static boolean passeCodeSuivantLexico(int[] cod1, int  nbCouleurs) //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    {
+        return true;
+    }
 
     //___________________________________________________________________
 
@@ -661,18 +672,18 @@ public class MM { // à renommer en main pour online compiler
     {
         System.out.println("-Bienvenue dans le Master Mind-");
         sautLigne();
-        
+
         while(true)
         {
             mancheDéroulement();
         }
     }
-    
+
     public static void mancheDéroulement()
     {
         System.out.println("-Initialisation de la partie-");
         sautLigne();
-        
+
         System.out.println("-Nombre de pions du code secret-");
         int lgCode = saisirEntierPositif();
         sautLigne();
@@ -687,38 +698,38 @@ public class MM { // à renommer en main pour online compiler
         System.out.println("-Nombre d'essais-");
         int nbEssaisMax = saisirEntierPositif();
         sautLigne();
-        
+
         int scoreHumain=0, scoreOrdi=0;
 
         for (int i=1; i<nbManches+1;i++)
         {
             clearConsole();
-            
+
             scoreOrdi += mancheHumain(lgCode, tabCouleurs, i, nbEssaisMax);
-            
+
             clearConsole(); sautLigne();
-        
+
             scoreHumain += mancheOrdinateur(lgCode, tabCouleurs, i, nbEssaisMax);
         }
-        
+
         ////// FIN PARTIE ///////
-        
+
         sautLigne();
-        System.out.println("-Fin de Partie-"); 
-        
+        System.out.println("-Fin de Partie-");
+
         if(scoreHumain==scoreHumain) // EGALITE
         {
-            System.out.println("Egalité ! "); 
+            System.out.println("Egalité ! ");
         }
         else if (scoreHumain>scoreOrdi) // HUMAIN GAGNANT
         {
-            System.out.println("L'humain a gagné !"); 
+            System.out.println("L'humain a gagné !");
         }
         else // ORDI GAGANT
         {
-            System.out.println("L'ordinateur a gagné !"); 
+            System.out.println("L'ordinateur a gagné !");
         }
-        
+
         pause(6000);
         clearConsole(); sautLigne();
     }

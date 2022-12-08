@@ -68,13 +68,20 @@ public class MM { // à renommer en main pour online compiler
      résultat : la liste des éléments de t entre parenthèses et séparés par des virgules */
     public static String listElem(char[] t)
     {
-        String listElem=""; // liste vide
+        String listElem="("; // liste vide
 
-        for (int i=0;i<(t.length-1);i++)
+        for (int i=0;i<t.length;i++)
         {
-            listElem+="("+t[i]+"),";
+
+            listElem+=t[i];
+
+            if (i!=t.length-1)
+            {
+                listElem+=(',');
+            }
         }
-        listElem+="("+t[t.length-1]+")";
+
+        listElem+=(')');
         return listElem;
     }
     //____________________________________________________________
@@ -166,7 +173,7 @@ public class MM { // à renommer en main pour online compiler
             }
             else
             {
-                System.out.println(t[i]+" n'est PAS un DOUBLON.");
+                System.out.println(t[i]+" n'est PAS DOUBLON.");
             }
         }
         return sontDiff;
@@ -456,12 +463,13 @@ public class MM { // à renommer en main pour online compiler
      les nombres de bien et mal placés resp.
      résultat : vrai ssi rep est correct, c'est-à-dire rep[0] et rep[1] sont >= 0 et leur somme est <= lgCode
      */
-    public static boolean repCorrecte(int[] rep, int lgCode){
-        boolean repCorrect=false;
-        if ((rep[0]>=0)&&(rep[1]>=0)&&(rep[0]+rep[1]==lgCode)){
-            repCorrect=true;
+    public static boolean repCorrecte(int[] rep, int lgCode)
+    {
+        if ( rep[0]>=0 && rep[1]>=0 && rep[0]+rep[1]<=lgCode )
+        {
+            return true;
         }
-        return repCorrect;
+        return false;
     }
 
     //___________________________________________________________________

@@ -70,10 +70,11 @@ public class MM { // à renommer en main pour online compiler
     {
         String listElem=""; // liste vide
 
-        for (int i=0;i<t.length;i++)
+        for (int i=0;i<(t.length-1);i++)
         {
             listElem+="("+t[i]+"),";
         }
+        listElem+="("+t[t.length-1]+")";
         return listElem;
     }
     //____________________________________________________________

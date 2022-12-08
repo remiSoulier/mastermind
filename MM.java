@@ -497,12 +497,27 @@ public class MM { // à renommer en main pour online compiler
      *************************************************
      pré-requis : les éléments de cod1 sont des entiers de 0 à nbCouleurs-1
      action/résultat : met dans cod1 le code qui le suit selon l'ordre lexicographique (dans l'ensemble
-     des codes à valeurs  de 0 à nbCouleurs-1) et retourne vrai si ce code existe,
+     des codes à valeurs de 0 à nbCouleurs-1) et retourne vrai si ce code existe,
      sinon met dans cod1 le code ne contenant que des "0" et retourne faux
      */
-     public static boolean passeCodeSuivantLexico(int[] cod1, int  nbCouleurs) //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-     {
-         return true;
+     public static boolean passeCodeSuivantLexico(int[] cod1, int  nbCouleurs)
+     { ///// 0 1 0 1 ///
+        if (repCorrecte(cod1,nbCouleurs))
+        {
+            for (int i=cod1.length-1 ;i>0;i--)
+            {
+                for (int j=0;i<nbCouleurs-1;i++)
+                {
+                    cod1[cod1.length-1]++;
+                }
+            }
+        }
+         for (int i=0;i<nbCouleurs-1;i++)
+         {
+             System.out.println(cod1[i]);
+         }
+
+        return false;
      }
 
     //___________________________________________________________________
@@ -515,6 +530,7 @@ public class MM { // à renommer en main pour online compiler
      c'est-à-dire que si cod1 était le code secret, les réponses aux nbCoups premières
      propositions de cod seraient les nbCoups premières réponses de rep resp.
      */
+
     public static boolean estCompat(int [] cod1, int [][] cod,int [][] rep, int nbCoups, int  nbCouleurs){ //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         return true;
     }
@@ -691,6 +707,13 @@ public class MM { // à renommer en main pour online compiler
         sautLigne();
         
         int scoreHumain=0, scoreOrdi=0;
+
+        int[]cod1 = {0,1,0,1};
+
+        for (int i=1; i<nbManches+1;i++)
+        {
+            System.out.println(passeCodeSuivantLexico(cod1,tabCouleurs.length));
+        }
 
         for (int i=1; i<nbManches+1;i++)
         {

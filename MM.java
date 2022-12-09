@@ -25,7 +25,7 @@ public class MM { // à renommer en main pour online compiler
     {
         for (int i=0; i<tab.length;i++)
         {
-            System.out.print(tab[i]+" ");
+            System.out.print(tab[i]);
         }
     }
 
@@ -501,36 +501,48 @@ public class MM { // à renommer en main pour online compiler
      sinon met dans cod1 le code ne contenant que des "0" et retourne faux
      */
      public static boolean passeCodeSuivantLexico(int[] cod1, int  nbCouleurs)
-     { ///// 0 1 0 1 ///
-        if (repCorrecte(cod1,nbCouleurs))
-        {
-            for (int i=(cod1.length-1);i>0;i--)
+     { ///// 0 0 0 0 ///
+
+            for (int i = cod1.length-1;i>0;i--)
             {
-                for (int j=0;(i<nbCouleurs-1);i++)
+                if (cod1[i] == nbCouleurs-1 && cod1[i-1] == nbCouleurs-1 && cod1[i-2] == nbCouleurs-1 && cod1[i-3] == nbCouleurs-1)
                 {
-                    if (cod1[j]==nbCouleurs-1)
+                    for (int j=0; j<cod1.length;j++)
                     {
-                        cod1[cod1.length-1]=0;
+                        cod1[j]=0;
                     }
-                    else
-                    {
-                        cod1[cod1.length-1]++;
-                    }
-
+                    return false;
                 }
-            }
 
-            // Affichage
-            for (int i=0;i<nbCouleurs-1;i++)
-            {
-                System.out.println(cod1[i]);
+                if (cod1[i] == nbCouleurs-1)
+                {
+                    cod1[i] = 0;
+
+                    if (cod1[i-1] == nbCouleurs-1)
+                    {
+                        cod1[i - 1] = 0;
+
+                        if (cod1[i - 2] == nbCouleurs - 1)
+                        {
+                            cod1[i - 2] = 0;
+
+                            if (cod1[i - 3] == nbCouleurs - 1)
+                            {
+                                cod1[i - 3] = 0;
+                            } else { cod1[i-3]++;}
+
+                        } else { cod1[i-2]++;}
+                    }
+                    else { cod1[i-1]++;}
+                }
+                else
+                {
+                    cod1[i]++;
+                }
+                return true;
+
             }
-            return true;
-        }
-        else
-        {
             return false;
-        }
      }
 
     //___________________________________________________________________
@@ -705,11 +717,15 @@ public class MM { // à renommer en main pour online compiler
         sautLigne();
         
         System.out.println("-Nombre de pions du code secret-");
-        int lgCode = saisirEntierPositif();
+        int lgCode = 4 /*saisirEntierPositif()*/;
         sautLigne();
 
-        char[] tabCouleurs = saisieCouleur();
+        char[] tabCouleurs = {'a','b','c','d'}/*saisieCouleur()*/;
         sautLigne();
+
+        int[] t1 = {1, 2, 3, 3};
+        affTabInt(t1); sautLigne();
+        passeCodeSuivantLexico(t1,tabCouleurs.length);
 
         System.out.println("-Nombre de manches-");
         int nbManches = saisirEntierPairPositif();
@@ -721,9 +737,7 @@ public class MM { // à renommer en main pour online compiler
         
         int scoreHumain=0, scoreOrdi=0;
 
-        int[]cod1 = {0,1,0,1};
 
-        System.out.println(passeCodeSuivantLexico(cod1,tabCouleurs.length));
 
         for (int i=1; i<nbManches+1;i++)
         {

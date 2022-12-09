@@ -504,20 +504,33 @@ public class MM { // à renommer en main pour online compiler
      { ///// 0 1 0 1 ///
         if (repCorrecte(cod1,nbCouleurs))
         {
-            for (int i=cod1.length-1 ;i>0;i--)
+            for (int i=(cod1.length-1);i>0;i--)
             {
-                for (int j=0;i<nbCouleurs-1;i++)
+                for (int j=0;(i<nbCouleurs-1);i++)
                 {
-                    cod1[cod1.length-1]++;
+                    if (cod1[j]==nbCouleurs-1)
+                    {
+                        cod1[cod1.length-1]=0;
+                    }
+                    else
+                    {
+                        cod1[cod1.length-1]++;
+                    }
+
                 }
             }
-        }
-         for (int i=0;i<nbCouleurs-1;i++)
-         {
-             System.out.println(cod1[i]);
-         }
 
-        return false;
+            // Affichage
+            for (int i=0;i<nbCouleurs-1;i++)
+            {
+                System.out.println(cod1[i]);
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
      }
 
     //___________________________________________________________________
@@ -710,10 +723,7 @@ public class MM { // à renommer en main pour online compiler
 
         int[]cod1 = {0,1,0,1};
 
-        for (int i=1; i<nbManches+1;i++)
-        {
-            System.out.println(passeCodeSuivantLexico(cod1,tabCouleurs.length));
-        }
+        System.out.println(passeCodeSuivantLexico(cod1,tabCouleurs.length));
 
         for (int i=1; i<nbManches+1;i++)
         {

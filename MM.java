@@ -570,8 +570,23 @@ public class MM { // à renommer en main pour online compiler
      propositions de cod seraient les nbCoups premières réponses de rep resp.
      */
 
-    public static boolean estCompat(int [] cod1, int [][] cod,int [][] rep, int nbCoups, int  nbCouleurs){ //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-        return true;
+    public static boolean estCompat(int [] cod1, int [][] cod,int [][] rep, int nbCoups, int  nbCouleurs){
+        boolean compat=false;
+        for (int i=0;i<cod.length;i++){
+            int[] t=nbBienMalPlaces(cod1,cod[i],nbCouleurs);
+
+            for (int j=0;j<t.length;j++){
+            }
+
+            for (int j=0;j<rep[i].length;j++){
+            }
+
+            if (t[0]==rep[i][0]&&t[1]==rep[i][1]){
+                compat=true;
+            }
+        }
+
+        return compat;
     }
 
     //___________________________________________________________________

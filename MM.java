@@ -514,50 +514,37 @@ public class MM { // à renommer en main pour online compiler
      des codes à valeurs de 0 à nbCouleurs-1) et retourne vrai si ce code existe,
      sinon met dans cod1 le code ne contenant que des "0" et retourne faux
      */
-     public static boolean passeCodeSuivantLexico(int[] cod1, int  nbCouleurs)
-     { ///// 0 0 0 0 ///
+    public static boolean passeCodeSuivantLexico(int[] cod1, int  nbCouleurs)
+    {
+        // verifie si on met dans cod1 le code ne contenant que des "0" et retourner faux
 
-            for (int i = cod1.length-1;i>0;i--)
+        int compEstMax=0;
+        for (int i = 0; i<cod1.length;i++)
+        {
+            if (cod1[i]==nbCouleurs-1)
             {
-                if (cod1[i] == nbCouleurs-1 && cod1[i-1] == nbCouleurs-1 && cod1[i-2] == nbCouleurs-1 && cod1[i-3] == nbCouleurs-1)
-                {
-                    for (int j=0; j<cod1.length;j++)
-                    {
-                        cod1[j]=0;
-                    }
-                    return false;
-                }
-
-                if (cod1[i] == nbCouleurs-1)
-                {
-                    cod1[i] = 0;
-
-                    if (cod1[i-1] == nbCouleurs-1)
-                    {
-                        cod1[i - 1] = 0;
-
-                        if (cod1[i - 2] == nbCouleurs - 1)
-                        {
-                            cod1[i - 2] = 0;
-
-                            if (cod1[i - 3] == nbCouleurs - 1)
-                            {
-                                cod1[i - 3] = 0;
-                            } else { cod1[i-3]++;}
-
-                        } else { cod1[i-2]++;}
-                    }
-                    else { cod1[i-1]++;}
-                }
-                else
-                {
-                    cod1[i]++;
-                }
-                return true;
-
+                compEstMax++;
+            }
+        }
+        if (compEstMax==cod1.length)
+        {
+            for (int i = 0; i<cod1.length;i++)
+            {
+                cod1[i]=0;
             }
             return false;
-     }
+        }
+        // ///////////////////////////////////
+
+        cod1[cod1.length-1]++;
+
+        for (int i=0;i<cod1.length;i++)
+        {
+            //for (int j=0; cod1)
+        }
+
+        return false;
+    }
 
     //___________________________________________________________________
 

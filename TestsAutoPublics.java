@@ -228,12 +228,16 @@ public class TestsAutoPublics {
 	double res = 0;
 	if(MM.nbCommuns(t1a,t1b,nbc1)==3)
 	    res+=0.25;
+		System.out.println("test 1 ");
 	if(MM.nbCommuns(t2a,t2b,nbc2)==2)
 	    res+=0.25;
+		System.out.println("test 2 ");
 	if(MM.nbCommuns(t3a,t3b,nbc3)==7)
 	    res+=0.25;
+		System.out.println("test 3 ");
 	if(MM.nbCommuns(t4a,t4b,nbc4)==t4a.length)
 	    res+=0.25;
+		System.out.println(t4a.length);
 
 	return res;
     }

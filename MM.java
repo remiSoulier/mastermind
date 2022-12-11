@@ -343,17 +343,31 @@ public class MM { // à renommer en main pour online compiler
      */
     public static int nbCommuns(int[] cod1,int[] cod2, int nbCouleurs){
         int nbCommuns = 0;
+        int [] t1=initTab(nbCouleurs,0);
+        int [] t2=initTab(nbCouleurs,0);
 
-        for (int i=0;i<nbCouleurs;i++)
-        {
-            for (int j=0;j<nbCouleurs;j++)
-            {
-                if(cod1[i]==cod2[j])
-                {
-                    nbCommuns++;
-                }
-            }
+        for (int i=0;i<cod1.length;i++){
+            t1[cod1[i]]++;
         }
+        for (int i=0;i<t1.length;i++){
+
+        }
+
+        for (int i=0;i<cod2.length;i++){
+            t2[cod2[i]]++;
+        }
+        for (int i=0;i<t1.length;i++) {
+
+        }
+        for (int i=0;i<t1.length;i++) {
+            if (t1[i]<=t2[i]){
+                nbCommuns+=t1[i];
+            }
+            else {nbCommuns+=t2[i];}
+        }
+
+
+
         System.out.println("Nombres de couleurs en communs: " + nbCommuns);
         return nbCommuns;
     }
